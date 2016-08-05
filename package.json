@@ -1,0 +1,19 @@
+{
+  "name": "hyperdrive-haus",
+  "version": "1.0.0",
+  "description": "[![NPM](https://nodei.co/npm/hyperdrive-haus.png)](https://nodei.co/npm/hyperdrive-haus/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karissa/hyperdrive-haus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karissa/hyperdrive-haus/issues"
+  },
+  "homepage": "https://github.com/karissa/hyperdrive-haus#readme"
+}
