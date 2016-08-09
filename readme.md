@@ -14,6 +14,8 @@ archive.list(function (err, files) {
 
 ```
 
+## API
+
 ### `var archive = haus(archive, opts)`
 
 `archive`: a hyperdrive archive **or** a hex encoded hyperdrive string.
