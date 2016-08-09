@@ -14,8 +14,30 @@ archive.list(function (err, files) {
 
 ```
 
-### var archive = haus(archive, opts)
+### `var archive = haus(archive, opts)`
 
 `archive`: a hyperdrive archive **or** a hex encoded hyperdrive string.
 `opts`:
   - `url`: the URL for dat.haus, defaults to `http://dat.haus`
+
+### `archive.createFileReadStream(entry)`
+
+Creates a read stream of the file with a given file name
+
+Example:
+
+```js
+var readStream = archive.createFileReadStream('hello.txt')
+readStream.pipe(process.stdout)
+```
+
+### `archive.list(callback)`
+
+List the files in the archive. Takes an optional callback. Will return a stream if callback not supplied.
+
+```js
+var stream = archive.list()
+stream.on('data', function (entry) {
+  console.log(entry)
+})
+```
