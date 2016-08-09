@@ -13,6 +13,7 @@ function Haus (key, opts) {
 }
 
 Haus.prototype.list = function (opts, cb) {
+  if ((typeof opts === 'function') && !cb) return this.list({}, opts)
   var stream = hyperquest.get(this.url + '/' + this.key)
   if (!cb) return stream
   pump(stream, ndjson.parse(), concat(function (data) {

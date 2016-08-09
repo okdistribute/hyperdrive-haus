@@ -5,7 +5,24 @@ var swarm = require('hyperdrive-archive-swarm')
 var hyperdrive = require('hyperdrive')
 var memdb = require('memdb')
 
-test('write and read', function (t) {
+test('list', function (t) {
+  t.plan(2)
+  var drive = hyperdrive(memdb())
+  var archive = drive.createArchive()
+  var sw = swarm(archive)
+  archive.createFileWriteStream('hello.txt').end('BEEP BOOP\n')
+  archive.finalize(function () {
+    var haus = Haus(archive)
+    haus.list(function (err, data) {
+      t.ifError(err)
+      t.same(data.length, 1, 'one file')
+      t.end()
+      sw.close()
+    })
+  })
+})
+
+test('list stream', function (t) {
   t.plan(1)
   var drive = hyperdrive(memdb())
   var archive = drive.createArchive()
@@ -18,6 +35,9 @@ test('write and read', function (t) {
       var file = JSON.parse(data.toString())
       t.same(file.name, 'hello.txt')
     })
+    stream.on('error', function (err) {
+      t.ifError(err)
+    })
     stream.on('end', function () {
       t.end()
       sw.close()
@@ -25,7 +45,7 @@ test('write and read', function (t) {
   })
 })
 
-test.only('write and read', function (t) {
+test('write and read', function (t) {
   t.plan(1)
   var drive = hyperdrive(memdb())
   var archive = drive.createArchive()
